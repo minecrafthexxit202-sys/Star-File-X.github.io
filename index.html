@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Star File X - Material 3 Expressive</title>
+  <!-- Material Symbols & Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+  <style>
+    /* ==========================================================================
+       MATERIAL 3 EXPRESSIVE LIGHT COLOR SCHEME (GREEN THEME) & TOKENS
+       ========================================================================== */
+    :root {
+      --md-sys-color-primary: #2E6A45;
+      --md-sys-color-on-primary: #FFFFFF;
+      --md-sys-color-primary-container: #B0F1C2;
+      --md-sys-color-on-primary-container: #00210F;
+
+      --md-sys-color-secondary: #516356;
+      --md-sys-color-secondary-container: #D3E8D8;
+      --md-sys-color-on-secondary-container: #102016;
+
+      --md-sys-color-tertiary-container: #C2E8FF;
+      --md-sys-color-on-tertiary-container: #001E2C;
+
+      --md-sys-color-surface: #F6FBF4;
+      --md-sys-color-surface-container-low: #F0F5EE;
+      --md-sys-color-surface-container: #EAF0E8;
+      --md-sys-color-surface-container-high: #E4EAE2;
+      --md-sys-color-surface-container-highest: #DEE4DC;
+
+      --md-sys-color-on-surface: #181D18;
+      --md-sys-color-on-surface-variant: #414941;
+      --md-sys-color-outline: #707972;
+      --md-sys-color-outline-variant: #BFC9C0;
+
+      --md-sys-color-inverse-surface: #2D322D;
+      --md-sys-color-inverse-on-surface: #EEF2EB;
+      --md-sys-color-inverse-primary: #95D5A7;
+
+      --md-sys-color-error: #B3261E;
+      --md-sys-color-on-error: #FFFFFF;
+      --md-sys-color-error-container: #F9DEDC;
+      --md-sys-color-on-error-container: #410E0B;
+
+      --md-shape-corner-card: 20px;
+      --md-shape-corner-box: 28px;
+      --md-shape-corner-pill: 9999px;
+      
+      --md-motion-transition: all 0.25s cubic-bezier(0.2, 0.0, 0.0, 1.0);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* App Viewport Container */
+    #app-container {
+      width: 100%;
+      max-width: 1280px;
+      height: 100vh;
+      max-height: 892px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      padding: 16px;
+    }
+
+    /* Top Navigation Box (100dp high header) */
+    .top-bar-box {
+      width: 100%;
+      height: 100px;
+      background-color: var(--md-sys-color-surface-container-high);
+      border-radius: var(--md-shape-corner-box);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .top-bar-box h1 {
+      font-size: 28sp;
+      font-weight: 700;
+      color: var(--md-sys-color-on-surface);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Screen Views Transition Setup */
+    .screen {
+      position: absolute;
+      top: 132px;
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(0);
+      transition: var(--md-motion-transition);
+    }
+
+    .screen.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(0);
+    }
+
+    .screen.slide-in {
+      transform: translateX(100%);
+    }
+
+    .screen.slide-in.active {
+      transform: translateX(0);
+    }
+
+    /* Common Card Styles */
+    .m3-card {
+      background-color: var(--md-sys-color-surface-container-highest);
+      border-radius: var(--md-shape-corner-card);
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.15s ease, background-color 0.2s ease;
+      user-select: none;
+    }
+
+    .m3-card:active {
+      transform: scale(0.98);
+    }
+
+    .m3-card .icon-area {
+      width: 100%;
+      height: 120px;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .m3-card .icon-area .material-symbols-rounded {
+      font-size: 48px;
+    }
+
+    .m3-card h2 {
+      font-size: 20sp;
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .m3-card p {
+      font-size: 14sp;
+      color: var(--md-sys-color-on-surface-variant);
+      line-height: 1.4;
+    }
+
+    /* HOME A & HOME A PC Layout */
+    .home-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .home-grid {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+      .home-grid .m3-card {
+        width: 340px;
+      }
+    }
+
+    /* Box Containers */
+    .content-box-high {
+      background-color: var(--md-sys-color-surface-container-high);
+      border-radius: var(--md-shape-corner-box);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      position: relative;
+      flex: 1;
+    }
+
+    .inner-box-surface {
+      background-color: var(--md-sys-color-surface);
+      border-radius: var(--md-shape-corner-box);
+      width: 100%;
+      max-width: 664px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+    }
+
+    .id-display-box {
+      background-color: var(--md-sys-color-surface);
+      border-radius: var(--md-shape-corner-box);
+      width: 100%;
+      max-width: 372px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22sp;
+      font-weight: bold;
+      color: var(--md-sys-color-primary);
+      letter-spacing: 1px;
+    }
+
+    /* M3 Chip */
+    .m3-chip {
+      height: 44px;
+      padding: 0 24px;
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+      border-radius: var(--md-shape-corner-pill);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: var(--md-motion-transition);
+    }
+
+    .m3-chip:active {
+      transform: scale(0.95);
+    }
+
+    /* Form & Input Elements */
+    .id-input-box {
+      width: 100%;
+      max-width: 364px;
+      height: 64px;
+      background-color: var(--md-sys-color-surface-container-high);
+      border-radius: var(--md-shape-corner-box);
+      border: 2px solid var(--md-sys-color-outline-variant);
+      padding: 0 20px;
+      font-size: 20sp;
+      text-align: center;
+      outline: none;
+      color: var(--md-sys-color-on-surface);
+    }
+
+    .id-input-box:focus {
+      border-color: var(--md-sys-color-primary);
+    }
+
+    .m3-button {
+      height: 56px;
+      padding: 0 32px;
+      background-color: var(--md-sys-color-primary);
+      color: var(--md-sys-color-on-primary);
+      border-radius: var(--md-shape-corner-box);
+      border: none;
+      font-size: 18sp;
+      font-weight: bold;
+      cursor: pointer;
+      transition: var(--md-motion-transition);
+    }
+
+    .m3-button:active {
+      transform: scale(0.95);
+    }
+
+    /* Request Item Pair List (Home B1 / B2) */
+    .counter-badge {
+      position: absolute;
+      top: 12px;
+      left: 20px;
+      font-size: 24sp;
+      font-weight: bold;
+      color: var(--md-sys-color-primary);
+    }
+
+    .request-card {
+      width: 100%;
+      max-width: 480px;
+      background-color: var(--md-sys-color-surface-container-high);
+      border-radius: var(--md-shape-corner-box);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 12px;
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-small {
+      width: 76px;
+      height: 44px;
+      border-radius: var(--md-shape-corner-pill);
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 16sp;
+      background-color: var(--md-sys-color-surface);
+      color: var(--md-sys-color-on-surface);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: var(--md-motion-transition);
+    }
+
+    .btn-small.yes {
+      background-color: var(--md-sys-color-primary-container);
+      color: var(--md-sys-color-on-primary-container);
+    }
+
+    .btn-small.no {
+      background-color: var(--md-sys-color-error-container);
+      color: var(--md-sys-color-on-error-container);
+    }
+
+    .timer-text {
+      font-size: 14sp;
+      color: var(--md-sys-color-error);
+      margin-top: 6px;
+    }
+
+    /* Back Button Component */
+    .btn-back {
+      background: none;
+      border: none;
+      color: var(--md-sys-color-on-surface);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+    }
+
+    .btn-back:hover {
+      background-color: var(--md-sys-color-surface-container-highest);
+    }
+
+    /* Hidden File Input */
+    #file-input {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="app-container">
+  <!-- Dynamic Top Bar Header -->
+  <div class="top-bar-box">
+    <h1 id="top-title">
+      <span class="material-symbols-rounded">stars</span>
+      Star File X
+    </h1>
+    <button class="btn-back" id="btn-global-back" style="display:none;" onclick="goHome()">
+      <span class="material-symbols-rounded">arrow_back</span>
+    </button>
+  </div>
+
+  <!-- SCREEN A: HOME MAIN MENU -->
+  <div id="screen-home-a" class="screen active">
+    <div class="home-grid">
+      <div class="m3-card" onclick="openSenderFlow()">
+        <div class="icon-area">
+          <span class="material-symbols-rounded">download</span>
+        </div>
+        <h2>Bên gửi file</h2>
+        <p>Giúp ta gửi file một cách dễ dàng</p>
+      </div>
+      <div class="m3-card" onclick="openReceiverFlow()">
+        <div class="icon-area">
+          <span class="material-symbols-rounded">language</span>
+        </div>
+        <h2>Bên nhận file</h2>
+        <p>Giúp ta nhận file một cách dễ dàng</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN B: SENDER FILE PREPARE -->
+  <div id="screen-home-b" class="screen slide-in">
+    <h2 style="font-size: 24sp;">Bên gửi File</h2>
+    <div class="content-box-high">
+      <div class="id-display-box" id="sender-id-display">ID: ---.---.---</div>
+      <div class="timer-text" id="sender-timer">Thời gian hết hạn: 15:00</div>
+
+      <div class="inner-box-surface" style="min-height: 200px;" id="drop-zone">
+        <p style="font-size: 18sp; margin-bottom: 12px;">Kéo thả file cần gửi vào đây</p>
+        <p style="font-size: 16sp; color: var(--md-sys-color-on-surface-variant); margin-bottom: 16px;">Hoặc chọn file cần gửi</p>
+        <button class="m3-chip" onclick="document.getElementById('file-input').click()">
+          <span class="material-symbols-rounded">folder_open</span>
+          Chọn file
+        </button>
+        <input type="file" id="file-input" onchange="handleFileSelected(event)">
+        <p id="selected-file-name" style="margin-top: 12px; font-weight: bold; color: var(--md-sys-color-primary);"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN B1 & B2: SENDER CONNECTING LIST (REQUEST PAIRING) -->
+  <div id="screen-home-b1" class="screen slide-in">
+    <h2 style="font-size: 24sp;">Bên gửi File</h2>
+    <div class="content-box-high">
+      <div class="id-display-box" id="sender-id-b1">ID: ---.---.---</div>
+      <div class="counter-badge" id="pair-count">0/5</div>
+
+      <div class="inner-box-surface" style="min-height: 300px; width: 100%; justify-content: flex-start;">
+        <p style="margin-bottom: 16px; color: var(--md-sys-color-on-surface-variant);">Danh sách thiết bị yêu cầu nhận file:</p>
+        <div id="request-list-container" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+          <!-- Items will be injected dynamically -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN C: RECEIVER INPUT -->
+  <div id="screen-home-c" class="screen slide-in">
+    <h2 style="font-size: 24sp;">Bên nhận File</h2>
+    <div class="content-box-high">
+      <div class="id-display-box" id="receiver-temp-id">Mã xác minh của bạn: ---.---.---</div>
+      <p style="font-size: 13sp; color: var(--md-sys-color-outline);">Mã này sẽ tự hủy khi bạn đóng/reload trang web</p>
+
+      <div class="inner-box-surface" style="margin-top: 20px; gap: 16px;">
+        <input type="text" id="input-sender-id" class="id-input-box" placeholder="ID: Nhập ID bên gửi (9 số)" maxlength="11">
+        <button class="m3-button" onclick="confirmReceive()">Xác nhận</button>
+        <p id="receiver-status" style="font-size: 14sp; color: var(--md-sys-color-primary);"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /* ==========================================================================
+     APP STATE & MEMORY-ONLY ARCHITECTURE (NO DISK / NO IP / NO LOGS)
+     ========================================================================== */
+  const state = {
+    role: null, // 'sender' | 'receiver'
+    senderCode: null,
+    receiverTempCode: null,
+    selectedFile: null,
+    timerSeconds: 900, // 15 phút
+    timerInterval: null,
+    pairingRequests: [], // Max 5
+  };
+
+  // Tạo mã 9 chữ số ngẫu nhiên dạng xxx.xxx.xxx
+  function generate9DigitCode() {
+    const num = Math.floor(100000000 + Math.random() * 900000000).toString();
+    return `${num.slice(0,3)}.${num.slice(3,6)}.${num.slice(6,9)}`;
+  }
+
+  // Tải lại giao diện và xóa dữ liệu đệm khỏi Memory
+  function selfDestructData() {
+    state.selectedFile = null;
+    state.pairingRequests = [];
+    clearInterval(state.timerInterval);
+    console.log("Memory wiped successfully. All user footprints destroyed.");
+  }
+
+  // Chuyển trang theo chuẩn M3 Expressive
+  function navigateTo(screenId, isSlide = false) {
+    document.querySelectorAll('.screen').forEach(s => {
+      s.classList.remove('active');
+    });
+    const target = document.getElementById(screenId);
+    if (isSlide) target.classList.add('slide-in');
+    target.classList.add('active');
+
+    const backBtn = document.getElementById('btn-global-back');
+    backBtn.style.display = (screenId === 'screen-home-a') ? 'none' : 'flex';
+  }
+
+  function goHome() {
+    selfDestructData();
+    navigateTo('screen-home-a');
+  }
+
+  /* ==========================================================================
+     SENDER FLOW (BÊN GỬI)
+     ========================================================================== */
+  function openSenderFlow() {
+    state.role = 'sender';
+    state.senderCode = generate9DigitCode();
+    state.timerSeconds = 900; // 15 phút
+
+    document.getElementById('sender-id-display').innerText = `ID: ${state.senderCode}`;
+    document.getElementById('sender-id-b1').innerText = `ID: ${state.senderCode}`;
+    
+    startSenderTimer();
+    navigateTo('screen-home-b', true);
+  }
+
+  function startSenderTimer() {
+    clearInterval(state.timerInterval);
+    state.timerInterval = setInterval(() => {
+      state.timerSeconds--;
+      const m = Math.floor(state.timerSeconds / 60).toString().padStart(2, '0');
+      const s = (state.timerSeconds % 60).toString().padStart(2, '0');
+      document.getElementById('sender-timer').innerText = `Thời gian hết hạn: ${m}:${s}`;
+
+      if (state.timerSeconds <= 0) {
+        alert("Mã gửi đã hết hạn! Vô hiệu hóa dữ liệu.");
+        goHome();
+      }
+    }, 1000);
+  }
+
+  function handleFileSelected(e) {
+    const file = e.target.files[0];
+    if (file) {
+      state.selectedFile = file;
+      document.getElementById('selected-file-name').innerText = `Đã chọn: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
+      
+      // Chuyển sang màn hình B1 (Chờ bên nhận kết nối)
+      setTimeout(() => {
+        renderPairingRequests();
+        navigateTo('screen-home-b1', true);
+      }, 600);
+    }
+  }
+
+  /* Simulated Receiver Request Injection */
+  function simulateIncomingRequest(reqCode) {
+    if (state.pairingRequests.length < 5) {
+      state.pairingRequests.push(reqCode);
+      renderPairingRequests();
+    }
+  }
+
+  function renderPairingRequests() {
+    const container = document.getElementById('request-list-container');
+    const badge = document.getElementById('pair-count');
+    badge.innerText = `${state.pairingRequests.length}/5`;
+
+    if (state.pairingRequests.length === 0) {
+      container.innerHTML = `<p style="color: var(--md-sys-color-outline); margin-top: 20px;">Đang chờ người nhận nhập mã...</p>`;
+      return;
+    }
+
+    container.innerHTML = state.pairingRequests.map((code, index) => `
+      <div class="request-card">
+        <span style="font-weight:bold; font-size:18sp;">ID: ${code}</span>
+        <div class="btn-row">
+          <button class="btn-small yes" onclick="acceptPair(${index})">YES</button>
+          <button class="btn-small no" onclick="rejectPair(${index})">NO</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function acceptPair(index) {
+    const code = state.pairingRequests[index];
+    alert(`Đã chấp nhận kết nối trực tiếp RAM-to-RAM với người nhận (${code}). Tiến hành gửi file nhị phân (xóa metadata gốc)...`);
+    
+    // Giả lập gửi P2P WebRTC ArrayBuffer thành công
+    setTimeout(() => {
+      alert("Gửi file thành công! Website tự động xóa mọi lịch sử.");
+      goHome();
+    }, 1200);
+  }
+
+  function rejectPair(index) {
+    state.pairingRequests.splice(index, 1);
+    renderPairingRequests();
+  }
+
+  /* ==========================================================================
+     RECEIVER FLOW (BÊN NHẬN)
+     ========================================================================== */
+  function openReceiverFlow() {
+    state.role = 'receiver';
+    state.receiverTempCode = generate9DigitCode(); // Mã xác minh độc nhất tạm thời
+    document.getElementById('receiver-temp-id').innerText = `ID của bạn: ${state.receiverTempCode}`;
+    document.getElementById('input-sender-id').value = '';
+    document.getElementById('receiver-status').innerText = '';
+    
+    navigateTo('screen-home-c', true);
+  }
+
+  function confirmReceive() {
+    const inputVal = document.getElementById('input-sender-id').value.trim();
+    if (!inputVal || inputVal.length < 9) {
+      alert("Vui lòng nhập đúng Mã Gửi 9 chữ số của bên gửi!");
+      return;
+    }
+
+    // Cộng thêm 3 phút thời gian chờ (15p -> 18p)
+    state.timerSeconds += 180; 
+    document.getElementById('receiver-status').innerText = `Đã gửi mã xác minh (${state.receiverTempCode}) sang Bên Gửi! Thời gian phiên được cộng thêm 3 phút. Vui lòng chờ bên gửi bấm YES.`;
+
+    // Giả lập kết nối sang giao diện Sender nếu đang mở trên cùng 1 trình duyệt
+    if (state.senderCode && inputVal.replace(/\./g, '') === state.senderCode.replace(/\./g, '')) {
+      simulateIncomingRequest(state.receiverTempCode);
+    }
+  }
+
+  /* Drag & Drop File Feature */
+  const dropZone = document.getElementById('drop-zone');
+  if(dropZone) {
+    dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.opacity = '0.7'; });
+    dropZone.addEventListener('dragleave', () => { dropZone.style.opacity = '1'; });
+    dropZone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropZone.style.opacity = '1';
+      if (e.dataTransfer.files.length) {
+        document.getElementById('file-input').files = e.dataTransfer.files;
+        handleFileSelected({ target: { files: e.dataTransfer.files } });
+      }
+    });
+  }
+
+  // Tự hủy mã và lịch sử khi đóng tab / reload trang
+  window.addEventListener('beforeunload', () => {
+    selfDestructData();
+  });
+</script>
+</body>
+</html>
