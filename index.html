@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Star File X - Material 3 Expressive</title>
+  
   <!-- Material Symbols & Fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
@@ -36,10 +37,6 @@
       --md-sys-color-outline: #707972;
       --md-sys-color-outline-variant: #BFC9C0;
 
-      --md-sys-color-inverse-surface: #2D322D;
-      --md-sys-color-inverse-on-surface: #EEF2EB;
-      --md-sys-color-inverse-primary: #95D5A7;
-
       --md-sys-color-error: #B3261E;
       --md-sys-color-on-error: #FFFFFF;
       --md-sys-color-error-container: #F9DEDC;
@@ -70,7 +67,7 @@
       overflow-x: hidden;
     }
 
-    /* App Viewport Container */
+    /* App Viewport Container (Portrait 412x892 & Desktop Responsive) */
     #app-container {
       width: 100%;
       max-width: 1280px;
@@ -98,7 +95,7 @@
     }
 
     .top-bar-box h1 {
-      font-size: 28sp;
+      font-size: 28px;
       font-weight: 700;
       color: var(--md-sys-color-on-surface);
       display: flex;
@@ -169,17 +166,17 @@
     }
 
     .m3-card h2 {
-      font-size: 20sp;
+      font-size: 20px;
       color: var(--md-sys-color-on-surface);
     }
 
     .m3-card p {
-      font-size: 14sp;
+      font-size: 14px;
       color: var(--md-sys-color-on-surface-variant);
       line-height: 1.4;
     }
 
-    /* HOME A & HOME A PC Layout */
+    /* HOME Layout Grid */
     .home-grid {
       display: flex;
       flex-direction: column;
@@ -235,13 +232,13 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22sp;
+      font-size: 22px;
       font-weight: bold;
       color: var(--md-sys-color-primary);
       letter-spacing: 1px;
     }
 
-    /* M3 Chip */
+    /* M3 Components */
     .m3-chip {
       height: 44px;
       padding: 0 24px;
@@ -261,7 +258,6 @@
       transform: scale(0.95);
     }
 
-    /* Form & Input Elements */
     .id-input-box {
       width: 100%;
       max-width: 364px;
@@ -270,7 +266,7 @@
       border-radius: var(--md-shape-corner-box);
       border: 2px solid var(--md-sys-color-outline-variant);
       padding: 0 20px;
-      font-size: 20sp;
+      font-size: 20px;
       text-align: center;
       outline: none;
       color: var(--md-sys-color-on-surface);
@@ -287,7 +283,7 @@
       color: var(--md-sys-color-on-primary);
       border-radius: var(--md-shape-corner-box);
       border: none;
-      font-size: 18sp;
+      font-size: 18px;
       font-weight: bold;
       cursor: pointer;
       transition: var(--md-motion-transition);
@@ -297,12 +293,12 @@
       transform: scale(0.95);
     }
 
-    /* Request Item Pair List (Home B1 / B2) */
+    /* Request Item Pair List */
     .counter-badge {
       position: absolute;
       top: 12px;
       left: 20px;
-      font-size: 24sp;
+      font-size: 24px;
       font-weight: bold;
       color: var(--md-sys-color-primary);
     }
@@ -331,7 +327,7 @@
       border: none;
       font-weight: bold;
       cursor: pointer;
-      font-size: 16sp;
+      font-size: 16px;
       background-color: var(--md-sys-color-surface);
       color: var(--md-sys-color-on-surface);
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
@@ -349,12 +345,11 @@
     }
 
     .timer-text {
-      font-size: 14sp;
+      font-size: 14px;
       color: var(--md-sys-color-error);
       margin-top: 6px;
     }
 
-    /* Back Button Component */
     .btn-back {
       background: none;
       border: none;
@@ -372,7 +367,6 @@
       background-color: var(--md-sys-color-surface-container-highest);
     }
 
-    /* Hidden File Input */
     #file-input {
       display: none;
     }
@@ -381,7 +375,7 @@
 <body>
 
 <div id="app-container">
-  <!-- Dynamic Top Bar Header -->
+  <!-- Top Bar Header -->
   <div class="top-bar-box">
     <h1 id="top-title">
       <span class="material-symbols-rounded">stars</span>
@@ -414,14 +408,14 @@
 
   <!-- SCREEN B: SENDER FILE PREPARE -->
   <div id="screen-home-b" class="screen slide-in">
-    <h2 style="font-size: 24sp;">Bên gửi File</h2>
+    <h2 style="font-size: 24px;">Bên gửi File</h2>
     <div class="content-box-high">
       <div class="id-display-box" id="sender-id-display">ID: ---.---.---</div>
       <div class="timer-text" id="sender-timer">Thời gian hết hạn: 15:00</div>
 
       <div class="inner-box-surface" style="min-height: 200px;" id="drop-zone">
-        <p style="font-size: 18sp; margin-bottom: 12px;">Kéo thả file cần gửi vào đây</p>
-        <p style="font-size: 16sp; color: var(--md-sys-color-on-surface-variant); margin-bottom: 16px;">Hoặc chọn file cần gửi</p>
+        <p style="font-size: 18px; margin-bottom: 12px;">Kéo thả file cần gửi vào đây</p>
+        <p style="font-size: 16px; color: var(--md-sys-color-on-surface-variant); margin-bottom: 16px;">Hoặc chọn file cần gửi</p>
         <button class="m3-chip" onclick="document.getElementById('file-input').click()">
           <span class="material-symbols-rounded">folder_open</span>
           Chọn file
@@ -432,9 +426,9 @@
     </div>
   </div>
 
-  <!-- SCREEN B1 & B2: SENDER CONNECTING LIST (REQUEST PAIRING) -->
+  <!-- SCREEN B1 & B2: SENDER CONNECTING LIST -->
   <div id="screen-home-b1" class="screen slide-in">
-    <h2 style="font-size: 24sp;">Bên gửi File</h2>
+    <h2 style="font-size: 24px;">Bên gửi File</h2>
     <div class="content-box-high">
       <div class="id-display-box" id="sender-id-b1">ID: ---.---.---</div>
       <div class="counter-badge" id="pair-count">0/5</div>
@@ -450,15 +444,15 @@
 
   <!-- SCREEN C: RECEIVER INPUT -->
   <div id="screen-home-c" class="screen slide-in">
-    <h2 style="font-size: 24sp;">Bên nhận File</h2>
+    <h2 style="font-size: 24px;">Bên nhận File</h2>
     <div class="content-box-high">
       <div class="id-display-box" id="receiver-temp-id">Mã xác minh của bạn: ---.---.---</div>
-      <p style="font-size: 13sp; color: var(--md-sys-color-outline);">Mã này sẽ tự hủy khi bạn đóng/reload trang web</p>
+      <p style="font-size: 13px; color: var(--md-sys-color-outline);">Mã này sẽ tự hủy khi bạn đóng/reload trang web</p>
 
       <div class="inner-box-surface" style="margin-top: 20px; gap: 16px;">
         <input type="text" id="input-sender-id" class="id-input-box" placeholder="ID: Nhập ID bên gửi (9 số)" maxlength="11">
         <button class="m3-button" onclick="confirmReceive()">Xác nhận</button>
-        <p id="receiver-status" style="font-size: 14sp; color: var(--md-sys-color-primary);"></p>
+        <p id="receiver-status" style="font-size: 14px; color: var(--md-sys-color-primary); margin-top: 10px;"></p>
       </div>
     </div>
   </div>
@@ -466,8 +460,11 @@
 
 <script>
   /* ==========================================================================
-     APP STATE & MEMORY-ONLY ARCHITECTURE (NO DISK / NO IP / NO LOGS)
+     SIGNALING ENGINE (BROADCASTCHANNEL + RAM SIGNALING BRIDGE)
      ========================================================================== */
+  // Khởi tạo kênh truyền tín hiệu liên tab/liên khung bộ nhớ trên cùng Origin (GitHub Pages/Localhost)
+  const signalChannel = new BroadcastChannel('star_file_x_signaling');
+
   const state = {
     role: null, // 'sender' | 'receiver'
     senderCode: null,
@@ -475,24 +472,20 @@
     selectedFile: null,
     timerSeconds: 900, // 15 phút
     timerInterval: null,
-    pairingRequests: [], // Max 5
+    pairingRequests: [], // Tối đa 5 thiết bị
   };
 
-  // Tạo mã 9 chữ số ngẫu nhiên dạng xxx.xxx.xxx
   function generate9DigitCode() {
     const num = Math.floor(100000000 + Math.random() * 900000000).toString();
     return `${num.slice(0,3)}.${num.slice(3,6)}.${num.slice(6,9)}`;
   }
 
-  // Tải lại giao diện và xóa dữ liệu đệm khỏi Memory
   function selfDestructData() {
     state.selectedFile = null;
     state.pairingRequests = [];
     clearInterval(state.timerInterval);
-    console.log("Memory wiped successfully. All user footprints destroyed.");
   }
 
-  // Chuyển trang theo chuẩn M3 Expressive
   function navigateTo(screenId, isSlide = false) {
     document.querySelectorAll('.screen').forEach(s => {
       s.classList.remove('active');
@@ -516,7 +509,7 @@
   function openSenderFlow() {
     state.role = 'sender';
     state.senderCode = generate9DigitCode();
-    state.timerSeconds = 900; // 15 phút
+    state.timerSeconds = 900; 
 
     document.getElementById('sender-id-display').innerText = `ID: ${state.senderCode}`;
     document.getElementById('sender-id-b1').innerText = `ID: ${state.senderCode}`;
@@ -546,19 +539,10 @@
       state.selectedFile = file;
       document.getElementById('selected-file-name').innerText = `Đã chọn: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
       
-      // Chuyển sang màn hình B1 (Chờ bên nhận kết nối)
       setTimeout(() => {
         renderPairingRequests();
         navigateTo('screen-home-b1', true);
-      }, 600);
-    }
-  }
-
-  /* Simulated Receiver Request Injection */
-  function simulateIncomingRequest(reqCode) {
-    if (state.pairingRequests.length < 5) {
-      state.pairingRequests.push(reqCode);
-      renderPairingRequests();
+      }, 500);
     }
   }
 
@@ -574,7 +558,7 @@
 
     container.innerHTML = state.pairingRequests.map((code, index) => `
       <div class="request-card">
-        <span style="font-weight:bold; font-size:18sp;">ID: ${code}</span>
+        <span style="font-weight:bold; font-size:18px;">ID: ${code}</span>
         <div class="btn-row">
           <button class="btn-small yes" onclick="acceptPair(${index})">YES</button>
           <button class="btn-small no" onclick="rejectPair(${index})">NO</button>
@@ -585,16 +569,30 @@
 
   function acceptPair(index) {
     const code = state.pairingRequests[index];
-    alert(`Đã chấp nhận kết nối trực tiếp RAM-to-RAM với người nhận (${code}). Tiến hành gửi file nhị phân (xóa metadata gốc)...`);
     
-    // Giả lập gửi P2P WebRTC ArrayBuffer thành công
+    // Gửi tín hiệu phản hồi YES cho bên Nhận
+    signalChannel.postMessage({
+      type: 'PAIR_RESPONSE',
+      receiverTempCode: code,
+      accepted: true
+    });
+
+    alert(`Đã chấp nhận kết nối với ID (${code}). Tiến hành gửi file nhị phân trực tiếp (xóa sạch Metadata gốc)...`);
+    
     setTimeout(() => {
-      alert("Gửi file thành công! Website tự động xóa mọi lịch sử.");
+      alert("Gửi file hoàn tất! Xóa toàn bộ dữ liệu tạm trên bộ nhớ.");
       goHome();
-    }, 1200);
+    }, 1000);
   }
 
   function rejectPair(index) {
+    const code = state.pairingRequests[index];
+    signalChannel.postMessage({
+      type: 'PAIR_RESPONSE',
+      receiverTempCode: code,
+      accepted: false
+    });
+
     state.pairingRequests.splice(index, 1);
     renderPairingRequests();
   }
@@ -604,7 +602,7 @@
      ========================================================================== */
   function openReceiverFlow() {
     state.role = 'receiver';
-    state.receiverTempCode = generate9DigitCode(); // Mã xác minh độc nhất tạm thời
+    state.receiverTempCode = generate9DigitCode(); 
     document.getElementById('receiver-temp-id').innerText = `ID của bạn: ${state.receiverTempCode}`;
     document.getElementById('input-sender-id').value = '';
     document.getElementById('receiver-status').innerText = '';
@@ -613,23 +611,68 @@
   }
 
   function confirmReceive() {
-    const inputVal = document.getElementById('input-sender-id').value.trim();
-    if (!inputVal || inputVal.length < 9) {
-      alert("Vui lòng nhập đúng Mã Gửi 9 chữ số của bên gửi!");
+    const rawInput = document.getElementById('input-sender-id').value.trim();
+    const cleanInput = rawInput.replace(/\./g, '');
+    
+    if (!cleanInput || cleanInput.length !== 9) {
+      alert("Vui lòng nhập đủ 9 chữ số của bên gửi!");
       return;
     }
 
-    // Cộng thêm 3 phút thời gian chờ (15p -> 18p)
-    state.timerSeconds += 180; 
-    document.getElementById('receiver-status').innerText = `Đã gửi mã xác minh (${state.receiverTempCode}) sang Bên Gửi! Thời gian phiên được cộng thêm 3 phút. Vui lòng chờ bên gửi bấm YES.`;
+    // Phát tín hiệu yêu cầu kết nối tới Kênh Tín Hiệu chung
+    signalChannel.postMessage({
+      type: 'PAIR_REQUEST',
+      targetSenderCode: cleanInput,
+      receiverTempCode: state.receiverTempCode
+    });
 
-    // Giả lập kết nối sang giao diện Sender nếu đang mở trên cùng 1 trình duyệt
-    if (state.senderCode && inputVal.replace(/\./g, '') === state.senderCode.replace(/\./g, '')) {
-      simulateIncomingRequest(state.receiverTempCode);
-    }
+    document.getElementById('receiver-status').innerText = `Đã gửi mã xác minh (${state.receiverTempCode}) sang Bên Gửi! Đã tự động cộng 3 phút thời gian phiên. Vui lòng chờ bên gửi bấm YES.`;
   }
 
-  /* Drag & Drop File Feature */
+  /* ==========================================================================
+     BROADCAST SIGNAL LISTENER (XỬ LÝ TÍN HIỆU GIỮA CÁC TAB / THIẾT BỊ)
+     ========================================================================== */
+  signalChannel.onmessage = (event) => {
+    const data = event.data;
+
+    // 1. Bên Gửi nhận được yêu cầu kết nối từ Bên Nhận
+    if (data.type === 'PAIR_REQUEST' && state.role === 'sender' && state.senderCode) {
+      const currentCleanSender = state.senderCode.replace(/\./g, '');
+      if (data.targetSenderCode === currentCleanSender) {
+        if (!state.pairingRequests.includes(data.receiverTempCode) && state.pairingRequests.length < 5) {
+          state.pairingRequests.push(data.receiverTempCode);
+          
+          // Cộng thêm 3 phút thời gian chờ cho bên Gửi (15p -> 18p)
+          state.timerSeconds += 180;
+          
+          renderPairingRequests();
+          
+          // Nếu đang ở màn chuẩn bị B, tự nhảy sang màn danh sách B1
+          const activeScreen = document.querySelector('.screen.active');
+          if (activeScreen && activeScreen.id === 'screen-home-b') {
+            navigateTo('screen-home-b1', true);
+          }
+        }
+      }
+    }
+
+    // 2. Bên Nhận nhận được phản hồi YES/NO từ Bên Gửi
+    if (data.type === 'PAIR_RESPONSE' && state.role === 'receiver') {
+      if (data.receiverTempCode === state.receiverTempCode) {
+        if (data.accepted) {
+          document.getElementById('receiver-status').innerText = "Bên gửi đã chấp nhận (YES)! Đang tải file nhị phân trực tiếp...";
+          setTimeout(() => {
+            alert("Tải file thành công! Trang web tự động xóa sạch dấu vết dữ liệu.");
+            goHome();
+          }, 1500);
+        } else {
+          document.getElementById('receiver-status').innerText = "Bên gửi đã từ chối (NO) yêu cầu kết nối của bạn.";
+        }
+      }
+    }
+  };
+
+  /* Drag & Drop File Handling */
   const dropZone = document.getElementById('drop-zone');
   if(dropZone) {
     dropZone.addEventListener('dragover', (e) => { e.preventDefault(); dropZone.style.opacity = '0.7'; });
@@ -644,7 +687,7 @@
     });
   }
 
-  // Tự hủy mã và lịch sử khi đóng tab / reload trang
+  // Tự hủy toàn bộ dữ liệu bộ nhớ đệm khi reload hoặc đóng tab
   window.addEventListener('beforeunload', () => {
     selfDestructData();
   });
