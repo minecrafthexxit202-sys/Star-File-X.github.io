@@ -26,7 +26,6 @@
             <span class="text-xs mono bg-gray-900 text-emerald-500 px-3 py-1 rounded border border-emerald-900">
                 🔒 SESSION: ANONYMOUS
             </span>
-            <!-- Nút Hướng Dẫn cho Người Mới -->
             <button onclick="toggleModal()" class="flex items-center space-x-2 bg-emerald-600 hover:bg-emerald-500 text-black font-semibold px-4 py-2 rounded-lg transition duration-200 glow-border">
                 <span>⚡</span>
                 <span>Hướng dẫn dùng</span>
@@ -37,12 +36,17 @@
     <!-- Main Content Grid -->
     <main class="max-w-6xl mx-auto space-y-6">
 
+        <!-- Input File ẩn -->
+        <input type="file" id="fileInput" class="hidden" multiple onchange="handleFiles(this.files)">
+
         <!-- Upload Zone -->
-        <div class="border-2 border-dashed border-gray-700 hover:border-emerald-500 rounded-xl p-8 text-center bg-gray-900/40 cursor-pointer transition">
+        <div id="dropZone" 
+             onclick="document.getElementById('fileInput').click()"
+             class="border-2 border-dashed border-gray-700 hover:border-emerald-500 rounded-xl p-8 text-center bg-gray-900/40 cursor-pointer transition">
             <div class="text-4xl mb-2">🛡️</div>
             <p class="text-lg font-medium text-gray-300">Kéo & Thả tệp vào đây để mã hóa</p>
             <p class="text-sm text-gray-500 mt-1 mono">Hỗ trợ tự hủy file - Tối đa 2GB / tệp</p>
-            <button class="mt-4 bg-gray-800 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded border border-gray-700 text-sm mono">
+            <button type="button" class="mt-4 bg-gray-800 hover:bg-gray-700 text-gray-200 px-4 py-2 rounded border border-gray-700 text-sm mono pointer-events-none">
                 [ Select File ]
             </button>
         </div>
@@ -58,23 +62,13 @@
                         <tr>
                             <th class="p-3">Tên Tệp</th>
                             <th class="p-3">Kích thước</th>
-                            <th class="p-3">Mã Hash</th>
                             <th class="p-3">Trạng thái</th>
                             <th class="p-3 text-right">Thao tác</th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-gray-800">
-                        <tr>
-                            <td class="p-3 font-medium text-white flex items-center gap-2">
-                                <span>📄</span> secret_document.pdf
-                            </td>
-                            <td class="p-3 mono">2.4 MB</td>
-                            <td class="p-3 mono text-xs text-gray-500">8f9a...3b21</td>
-                            <td class="p-3"><span class="bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded text-xs">An toàn</span></td>
-                            <td class="p-3 text-right space-x-2">
-                                <button class="text-xs bg-gray-800 hover:bg-gray-700 px-2 py-1 rounded border border-gray-700">Tải về</button>
-                                <button class="text-xs bg-red-950 hover:bg-red-900 text-red-400 px-2 py-1 rounded">Xóa</button>
-                            </td>
+                    <tbody id="fileTableBody" class="divide-y divide-gray-800">
+                        <tr id="emptyRow">
+                            <td colspan="4" class="p-4 text-center text-gray-500 mono">Chưa có tệp nào được tải lên.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -82,8 +76,8 @@
         </div>
     </main>
 
-    <!-- Modal Hướng Dẫn cho Người Không Biết Dùng -->
-    <div id="guideModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <!-- Modal Hướng Dẫn -->
+    <div id="guideModal" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50">
         <div class="bg-gray-900 border border-emerald-500/30 rounded-xl max-w-lg w-full p-6 space-y-4">
             <div class="flex justify-between items-center border-b border-gray-800 pb-3">
                 <h3 class="text-lg font-bold text-emerald-400 flex items-center gap-2">
@@ -95,15 +89,11 @@
             <div class="space-y-3 text-sm text-gray-300">
                 <div class="flex gap-3">
                     <div class="bg-emerald-900/50 text-emerald-400 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">1</div>
-                    <p><strong>Tải file lên:</strong> Kéo file thả vào ô vuông nét đứt ở giữa màn hình hoặc bấm nút "Select File".</p>
+                    <p><strong>Tải file lên:</strong> Kéo file thả vào ô nét đứt hoặc bấm nút "Select File".</p>
                 </div>
                 <div class="flex gap-3">
                     <div class="bg-emerald-900/50 text-emerald-400 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">2</div>
-                    <p><strong>Tự động ẩn danh:</strong> Mọi file sẽ được tự động mã hóa và ẩn danh identity của bạn.</p>
-                </div>
-                <div class="flex gap-3">
-                    <div class="bg-emerald-900/50 text-emerald-400 w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs shrink-0">3</div>
-                    <p><strong>Quản lý File:</strong> Xem danh sách file bên dưới, bạn có thể tải về hoặc chọn xóa vĩnh viễn bất kỳ lúc nào.</p>
+                    <p><strong>Quản lý File:</strong> Danh sách hiển thị ngay bên dưới, cho phép xem kích thước và xóa file.</p>
                 </div>
             </div>
 
@@ -116,9 +106,66 @@
     </div>
 
     <script>
+        const uploadedFiles = [];
+
         function toggleModal() {
-            const modal = document.getElementById('guideModal');
-            modal.classList.toggle('hidden');
+            document.getElementById('guideModal').classList.toggle('hidden');
+        }
+
+        // Drag and Drop handlers
+        const dropZone = document.getElementById('dropZone');
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropZone.addEventListener(eventName, e => { e.preventDefault(); e.stopPropagation(); }, false);
+        });
+
+        dropZone.addEventListener('drop', e => {
+            const dt = e.dataTransfer;
+            handleFiles(dt.files);
+        });
+
+        function formatBytes(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function handleFiles(files) {
+            Array.from(files).forEach(file => {
+                uploadedFiles.push(file);
+            });
+            renderFileList();
+        }
+
+        function removeFile(index) {
+            uploadedFiles.splice(index, 1);
+            renderFileList();
+        }
+
+        function renderFileList() {
+            const tbody = document.getElementById('fileTableBody');
+            tbody.innerHTML = '';
+
+            if (uploadedFiles.length === 0) {
+                tbody.innerHTML = `<tr id="emptyRow"><td colspan="4" class="p-4 text-center text-gray-500 mono">Chưa có tệp nào được tải lên.</td></tr>`;
+                return;
+            }
+
+            uploadedFiles.forEach((file, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td class="p-3 font-medium text-white flex items-center gap-2">
+                        <span>📄</span> ${file.name}
+                    </td>
+                    <td class="p-3 mono">${formatBytes(file.size)}</td>
+                    <td class="p-3"><span class="bg-emerald-950 text-emerald-400 px-2 py-0.5 rounded text-xs">Sẵn sàng</span></td>
+                    <td class="p-3 text-right space-x-2">
+                        <button onclick="removeFile(${index})" class="text-xs bg-red-950 hover:bg-red-900 text-red-400 px-2 py-1 rounded">Xóa</button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
         }
     </script>
 </body>
